@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/tests"
+    },
+    "extends": "./tsconfig",
+    "include": ["functions/**/tests/*.system.test.ts"],
+    "exclude": []
+}
