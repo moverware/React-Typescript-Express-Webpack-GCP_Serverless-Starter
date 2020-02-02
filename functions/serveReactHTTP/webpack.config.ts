@@ -9,7 +9,7 @@ const config: webpack.Configuration = {
         vendor: ['react', 'react-dom']
     },
     output: {
-        path: path.resolve(__dirname, './frontEnd'),
+        path: path.resolve(__dirname, './src'),
         filename: 'js/[name].bundle.js',
         devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]' // for vscode debugger
     },

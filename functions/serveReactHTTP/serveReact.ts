@@ -33,3 +33,5 @@ if (dev) {
 }
 
 app.use(express.static(path.resolve(__dirname, 'frontEnd')))
+
+export { app as serveReactHTTP }

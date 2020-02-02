@@ -1,7 +1,7 @@
 {
     "name": "Typescript-Express-GCP_Serverless-Starter",
     "functionVars": {
-        "localFunc": "helloWorldHTTP"
+        "localFunc": "serveReactHTTP"
     },
     "version": "1.0.0",
     "description": "",
@@ -10,11 +10,12 @@
         "start": "npm-run-all build localFunc",
         "test": "npm-run-all lint:test clean build:test start:test",
         "localFunc": "cd ./dist && functions-framework --target=$npm_package_functionVars_localFunc",
-        "build": "./node_modules/.bin/npm-run-all lint:functions clean build:functions",
+        "build": "./node_modules/.bin/npm-run-all lint:functions clean build:functions build:serveReactFrontend",
         "test:system": "npm-run-all lint:test:system clean build:test:system start:test:system",
         "HELPERS": "______________________________________________________________",
         "build:functions": "./node_modules/.bin/tsc -p ./tsconfig.functions.json",
         "lint:functions": "./node_modules/.bin/tslint --project ./tsconfig.functions.json --config ./tslint.json",
+        "build:serveReactFrontend": "./node_modules/.bin/webpack --config ./dist/functions/serveReactHTTP/webpack.config.js",
         "lint:test": "tslint --project ./tsconfig.test.json",
         "lint:test:system": "tslint --project ./tsconfig.system.test.json",
         "build:test": "tsc -p ./tsconfig.test.json",
@@ -55,6 +56,7 @@
         "@types/webpack-dev-middleware": "^2.0.3",
         "@types/webpack-hot-middleware": "^2.25.0",
         "assert": "^2.0.0",
+        "awesome-typescript-loader": "^5.2.1",
         "dotenv": "^6.2.0",
         "html-webpack-plugin": "^3.2.0",
         "mocha": "^6.1.4",
@@ -64,7 +66,9 @@
         "sinon-express-mock": "^2.2.0",
         "supertest": "^4.0.2",
         "tslint": "^5.16.0",
-        "tslint-config-prettier": "^1.15.0",
+        "tslint-config-prettier": "^1.18.0",
+        "tslint-react": "^4.2.0",
+        "webpack-cli": "^3.3.10",
         "webpack-dev-middleware": "^3.7.2",
         "webpack-hot-middleware": "^2.25.0"
     }
