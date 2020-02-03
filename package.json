@@ -24,9 +24,11 @@
         "start:test:system": "mocha \"dist/**/tests/*.system.test.js\" --timeout 4000 --exit",
         "clean": "./node_modules/.bin/rimraf ./dist",
         "DEPLOYING": "____________________________________________________________",
-        "deploy_all": "npm-run-all --parallel deploy_helloWorldHTTP --serial test:system",
+        "deploy_all": "npm-run-all --parallel deploy_helloWorldHTTP deploy_ServeReactHTTP --serial test:system",
         "deploy_helloWorldHTTP": "npm-run-all build deploy_helloWorldHTTPMain",
-        "deploy_helloWorldHTTPMain": "gcloud functions deploy helloWorldHTTP --source ./dist --runtime nodejs10 --trigger-http"
+        "deploy_helloWorldHTTPMain": "gcloud functions deploy helloWorldHTTP --source ./dist --runtime nodejs10 --trigger-http",
+        "deploy_serveReactHTTP": "npm-run-all build deploy_serveReactHTTPMain",
+        "deploy_serveReactHTTPMain": "gcloud functions deploy serveReactHTTP --source ./dist --runtime nodejs10 --trigger-http"
     },
     "keywords": [],
     "author": "",
