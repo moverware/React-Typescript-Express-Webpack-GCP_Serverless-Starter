@@ -2,14 +2,19 @@ import * as webpack from 'webpack'
 import * as path from 'path'
 import * as HtmlWebpackPlugin from 'html-webpack-plugin'
 
+const APP_DIR = path.resolve(__dirname, '../../../functions/serveReactHTTP/src')
+
 const config: webpack.Configuration = {
     mode: 'development',
     entry: {
-        app: ['./src/App.tsx', 'webpack-hot-middleware/client'],
+        app: [
+            path.resolve(APP_DIR, 'App.tsx'),
+            'webpack-hot-middleware/client'
+        ],
         vendor: ['react', 'react-dom']
     },
     output: {
-        path: path.resolve(__dirname, './src'),
+        path: path.resolve(__dirname, './frontEnd'),
         filename: 'js/[name].bundle.js',
         devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]' // for vscode debugger
     },
@@ -24,7 +29,10 @@ const config: webpack.Configuration = {
                 exclude: /node_modules/,
                 loader: 'awesome-typescript-loader',
                 query: {
-                    configFileName: './src/tsconfig.frontend.json'
+                    configFileName: path.resolve(
+                        APP_DIR,
+                        'tsconfig.frontend.json'
+                    )
                 }
             },
             {
@@ -37,7 +45,7 @@ const config: webpack.Configuration = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src', 'index.html')
+            template: path.resolve(__dirname, APP_DIR, 'index.html')
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
